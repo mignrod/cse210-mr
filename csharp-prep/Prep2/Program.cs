@@ -37,23 +37,26 @@ class Program
         }
 
         string sign = "";
-        if ((gradePercentage % 10) >= 7 && letter != "A" && letter != "F")
+        if ((gradePercentage % 10) < 7 || letter == "A" || letter == "F")
+        {
+            if ((gradePercentage % 10) < 3 && letter != "F")
+            {
+                sign = "-";
+
+            }
+
+            else
+            {
+                sign = "";
+
+            }
+        }
+        else
         {
             sign = "+";
 
         }
-        else if ((gradePercentage % 10) < 3 && letter != "F")
-        {
-            sign = "-";
 
-        }
-
-        else
-        {
-            sign = "";
-
-        }
-        
         Console.WriteLine($"Your grade letter is {letter}{sign}");
         Console.WriteLine("");
 
