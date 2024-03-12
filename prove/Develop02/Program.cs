@@ -1,27 +1,23 @@
 using System;
-using System.IO;
 
 class Program
 {
     static void Main(string[] args)
     {
+        
+        // Print a brief welcome message;
+        Console.WriteLine("Welcome to the Journal Program! This is your personal and private Journal");
+        
         //Creating the new instance of journal
         Journal myJournal = new Journal();
 
-        Entry newEntry = new Entry();
-        newEntry.Display();
-        
-              
- 
-        // Print a brief welcome message
-        Console.WriteLine("Welcome to the Journal Program! This is your personal and private Journal");
         while (true) {
-            Console.WriteLine("Please select one of the following choices:");
-            Console.WriteLine("1. Write something");
-            Console.WriteLine("2. Display your entries");
-            Console.WriteLine("3. Load your personal journal file");
-            Console.WriteLine("4. Save your journal to a file");
-            Console.WriteLine("5. Quit the program");
+            Console.WriteLine("Please select one of the following choices:\n"+
+            "1. Write something\n"+
+            "2. Display your entries\n"+
+            "3. Load your personal journal file\n"+
+            "4. Save your journal to a file\n"+
+            "5. Quit the program");
 
             // Request from the user an action to take
             Console.Write("What would you like to do? (1-5): ");
@@ -31,6 +27,7 @@ class Program
             switch (choise) 
             {
                 case "1":
+                Entry newEntry = new Entry();
                 myJournal.AddEntry(newEntry);
                 break;
 
@@ -38,13 +35,13 @@ class Program
                 myJournal.DisplayAll();
                 break;
 
-                // case "3":
-                // myJournal.LoadFromFile();
-                // break;
+                case "3":
+                myJournal.LoadFromFile();
+                break;
 
-                // case "4":
-                // myJournal.SaveToFile();
-                // break;
+                case "4":
+                myJournal.SaveToFile();
+                break;
 
                 // Closing the program and say goodbye!
                 case "5":

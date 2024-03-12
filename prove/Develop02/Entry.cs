@@ -1,17 +1,17 @@
 public class Entry
 {
-    public string _date {get; set;}
+    public string _date;
 
-    public string _promptText {get; set;}
+    public string _promptText;
 
-    public string _entryText {get; set;}
+    public string _entryText;
 
+    
     public void Display()
     {
-        Console.WriteLine($"Date: {_date} - Prompt: {_promptText}\n{_entryText}");
+        _date = DateTime.Now.ToShortDateString();
+        PromptGenerator Prompt = new PromptGenerator();
+        _promptText = Prompt.GetRandomPrompt();
+        _entryText = Console.ReadLine();
     }
-    // public override string ToString()
-    // {
-    //     return $"Date: {_date} - Prompt: {_promptText}\n{_entryText}";
-    // }
 }

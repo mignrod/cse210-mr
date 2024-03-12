@@ -30,6 +30,9 @@ public class PromptGenerator
 
         Random random = new Random();
         int i = random.Next(_prompts.Count);
-        return _prompts[i];
+        string prompt = _prompts[i];
+        Console.Write($"{prompt}\n> ");
+
+        return prompt;
     }
 }
