@@ -17,7 +17,8 @@ class Program
             "2. Display your entries\n"+
             "3. Load your personal journal file\n"+
             "4. Save your journal to a file\n"+
-            "5. Quit the program");
+            "5. Show Files Saved\n"+
+            "6. Quit the program");
 
             // Request from the user an action to take
             Console.Write("What would you like to do? (1-5): ");
@@ -43,8 +44,13 @@ class Program
                 myJournal.SaveToFile();
                 break;
 
-                // Closing the program and say goodbye!
+                // Show files saved
                 case "5":
+                myJournal.ShowFiles();
+                break;
+
+                // Closing the program and say goodbye!
+                case "6":
                 Console.WriteLine("Goodbye! And see you soon!");
                 return;
  

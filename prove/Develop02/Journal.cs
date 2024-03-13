@@ -35,8 +35,6 @@ public class Journal
 
             }
         }
-
-
     }
 
     public void LoadFromFile()
@@ -58,5 +56,28 @@ public class Journal
             Data._entryText = parts[2];
             _entries.Add(Data);
         }
+    }
+
+    public void ShowFiles()
+    {
+        // Create a reference to the current directory.
+        DirectoryInfo d = new DirectoryInfo(Environment.CurrentDirectory);
+        // Create an array representing the files in the current directory.
+        FileInfo[] fi = d.GetFiles("*.txt");
+        // Print out the names of the files in the current directory.
+        if (fi.Count() != 0)
+        {
+            Console.WriteLine("The following files exist in the current directory:");
+            foreach (FileInfo fiTemp in fi)
+            {
+                Console.WriteLine(fiTemp.Name);
+            }
+            Console.WriteLine("");
+        }
+        else
+        {
+            Console.WriteLine("There is no files in the current directory!\n");
+        }
+        
     }  
 }
