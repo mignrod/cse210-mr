@@ -17,7 +17,12 @@ class Program
             Console.WriteLine("Press the Enter key to continue or type quit to finish the program.");
             response = Console.ReadLine();
            
-            Console.WriteLine($"{fullScripture.GetDisplayText()}");
+            Word words = new Word(text);
+            Console.WriteLine($"{fullScripture.GetDisplayText()} - {words.GetDisplayText()}");
+
+            
+            fullScripture.HideRandomWords(0);
+
 
 
             if (response == "quit")

@@ -15,30 +15,33 @@ public class Word
     public void Hide()
     {
         char[] hiddenLetters = _text.ToCharArray();
+        _text.Split(" ");
+        
         for(int i = 0; i < _text.Length; i++)
         {
             hiddenLetters[i] = '_';
         }
         _text = new string(hiddenLetters);
-        _isHidden = true;
+        _isHidden = false;
+    
 
     }
 
     public void Show()
     {
-        Console.WriteLine($"{_text}");
-        
+        // Console.WriteLine(_text.IsHidden());
+
     }
 
     public bool IsHidden()
     {
         if(_isHidden)
         {
-            return false;
+            return true;
         }
         else
         {
-            return true;
+            return false;
         }
     }
 
