@@ -1,44 +1,41 @@
 using System;
+using System.Collections.Generic;
 
 public class Scripture
 {
     private Reference _reference;
-    private List<Word> _words = new List<Word>();
+    private List<Word> _words;
 
     public Scripture(Reference reference, string text)
     {
         _reference = reference;
+        _words = new List<Word>();
+
         string[] verse = text.Split(" ");
-        for (int i = 0; i < verse.Length; i++)
+        foreach (string word in verse)
         {
-            Word newWords = new Word(verse[i]);
-            _words.Add(newWords);
+            _words.Add(new Word(word));
         }
     }
 
     public void HideRandomWords(int NumberToHide)
     {
         Random random = new Random();
-        while(NumberToHide < 4)
+        for (int i = 0; i < NumberToHide; i++)
         {
             int index = random.Next(_words.Count);
-            // _words[index].Hide();
-            NumberToHide++;
-            Console.WriteLine(_words[index].ToString());
-
-
+            _words[index].Hide();
 
         }
-
     }
 
     public string GetDisplayText()
     {
-        foreach(Word word in _words)
-           {
-            return $"{_reference.GetDisplayText()}";
-           }
-        return $"{_reference.GetDisplayText()}";
+        foreach(Word word in _words);
+
+            string wholeText = string.Join(" ", _words.Select(word => word.GetDisplayText()));
+
+        return $"{_reference.GetDisplayText() } - {wholeText}";
     }
     public bool IsCompletelyHidden()
     {

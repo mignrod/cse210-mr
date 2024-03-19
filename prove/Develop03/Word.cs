@@ -22,31 +22,28 @@ public class Word
             hiddenLetters[i] = '_';
         }
         _text = new string(hiddenLetters);
-        _isHidden = false;
-    
-
+        _isHidden = true;
     }
 
     public void Show()
     {
-        // Console.WriteLine(_text.IsHidden());
-
+        _isHidden = false;
     }
 
     public bool IsHidden()
     {
-        if(_isHidden)
+        if (_isHidden)
         {
             return true;
         }
         else
         {
-            return false;
+            return false; 
         }
     }
 
     public string GetDisplayText()
     {
-        return _text;
+       return _text;
     }
 }
