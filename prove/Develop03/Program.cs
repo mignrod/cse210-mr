@@ -20,6 +20,8 @@ class Program
             Console.WriteLine("Press the Enter key to continue or type quit to finish the program.");
             response = Console.ReadLine();
 
+            Console.Clear();
+
             Console.WriteLine(fullScripture.GetDisplayText());
 
             fullScripture.HideRandomWords(2);
