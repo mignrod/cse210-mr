@@ -5,6 +5,9 @@ public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
     private int _score = 0;
+    private int _level = 0;
+    private int _expNeeded = 500;
+    private int _expEarned = 0;
 
     public GoalManager()
     {
@@ -14,7 +17,6 @@ public class GoalManager
     public void Start()
     {
         Console.Clear();
-        
         DisplayPlayerInfo();
         Console.Write($@"
 Menu Options
@@ -34,6 +36,7 @@ Select a choice from the menu:  ");
     public void DisplayPlayerInfo()
     {
         Console.WriteLine($"You have {_score} points");
+
     }
 
     public void ListGoalNames()
@@ -136,6 +139,7 @@ Which type of Goal would you like to create?
 
             Console.WriteLine($"Congratulations! You have earned {scoreEarned} points!");
             Console.WriteLine($"You now have {_score} points");
+            CheckLeveUp();
             Console.WriteLine("Click ENTER to continue...");
             Console.ReadKey();
             Console.Clear();
@@ -148,6 +152,18 @@ Which type of Goal would you like to create?
         
     }
 
+    public void CheckLeveUp()
+    {
+        _expEarned =+ _score;
+        if(_expEarned >= _expNeeded) {
+            _level++;
+            _expEarned -= _expNeeded;
+            _expNeeded += 500;
+            Console.WriteLine($"Congratulations!!\n You have reached the level *{_level}*");
+
+        }
+    }
+
     public void SaveGoals()
     {
         string fileName = "";
@@ -158,7 +174,10 @@ Which type of Goal would you like to create?
         using (StreamWriter outputfile = new StreamWriter(fileName))
         {
             int totalScore = _score;
+            int totalLevel = _level;
             outputfile.WriteLine(totalScore.ToString());
+            outputfile.WriteLine(totalLevel.ToString());
+
             foreach(Goal goal in _goals)
             {
                 outputfile.WriteLine(goal.GetStringRepresentation());
@@ -179,8 +198,9 @@ Which type of Goal would you like to create?
         string[] lines = System.IO.File.ReadAllLines(fileName);
 
         _score = Convert.ToInt32(lines[0]);
+        _level = Convert.ToInt32(lines[1]);
 
-        for(int i = 1; i < lines.Count(); i++)
+        for(int i = 2; i < lines.Count(); i++)
         {
             string[] parts = lines[i].Split("|");
 
