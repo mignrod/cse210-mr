@@ -11,20 +11,26 @@ public class ChecklistGoal : Goal
         _amountCompleted = amountCompleted;
         _target = target;
         _bonus = bonus;
-
     }
 
-    public int GetBonus()
+    public override int GetBonus()
     {
-        return _bonus;
+        int total = 0;
+        bool status = IsComplete();
+
+        if (status == true) {
+            total += _bonus;
+        }
+
+        return total;
     }
 
     public override void RecordEvent()
     {
-        if (IsComplete()) {
+        if (IsComplete() == false) {
             
             _amountCompleted++;
-            GetBonus();
+            
 
         } else {
             Console.WriteLine("You have already completed this goal.");
@@ -34,7 +40,7 @@ public class ChecklistGoal : Goal
 
     public override bool IsComplete()
     {
-        if (_amountCompleted != _target) {
+        if (_amountCompleted == _target) {
             return true;
         } else {
             return false;

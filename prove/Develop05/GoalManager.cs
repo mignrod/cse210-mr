@@ -13,12 +13,10 @@ public class GoalManager
 
     public void Start()
     {
-        while(true)
-        {
-            Console.Clear();
-            
-            DisplayPlayerInfo();
-            Console.Write($@"
+        Console.Clear();
+        
+        DisplayPlayerInfo();
+        Console.Write($@"
 Menu Options
 ===========================================
 Please select one of the following choices:
@@ -30,38 +28,7 @@ Please select one of the following choices:
 6. Quit.
 ===========================================
 Select a choice from the menu:  ");
-            string choice = Console.ReadLine();
 
-            switch (choice)
-            {
-                case "1":
-                CreateGoal();
-                break;
-
-                case "2":
-                ListGoalDetails();
-                Console.WriteLine("Click Enter to continue.. ");
-                Console.ReadKey();
-                Console.Clear();
-                break;
-
-                case "3":
-                SaveGoals();
-                break;
-
-                case "4":
-                LoadGoals();
-                break;
-
-                case "5":
-                RecordEvent();
-                break;
-
-                case "6":
-                Console.WriteLine("GoodBye!!");
-                return;
-            }
-        }
     }
 
     public void DisplayPlayerInfo()
@@ -94,6 +61,7 @@ Which type of Goal would you like to create?
 
     public void CreateGoal()
     {
+        Console.Clear();
         ListGoalNames();
         string selection = Console.ReadLine();
         switch(selection)
@@ -105,6 +73,7 @@ Which type of Goal would you like to create?
             string description = Console.ReadLine();
             Console.Write("What is the amount of points associated with this Goal? ");
             string points = Console.ReadLine();
+
             bool IsComplete = false;
             SimpleGoal simple = new SimpleGoal(name, description, points, IsComplete);
             _goals.Add(simple);
@@ -117,6 +86,7 @@ Which type of Goal would you like to create?
             description = Console.ReadLine();
             Console.Write("What is the amount of points associated with this Goal? ");
             points = Console.ReadLine();
+            
             int counter = 0;
             EternalGoal eternal = new EternalGoal(name, description, points, counter);
             _goals.Add(eternal);
@@ -129,6 +99,7 @@ Which type of Goal would you like to create?
             description = Console.ReadLine();
             Console.Write("What is the amount of points associated with this Goal? ");
             points = Console.ReadLine();
+            
             Console.Write("How many times does this Goal need to be accomplished for a bonus? ");
             int target = Convert.ToInt32(Console.ReadLine());
             Console.Write("What is the bonus for accomplishing it that many times? ");
@@ -156,8 +127,10 @@ Which type of Goal would you like to create?
         {
             _goals[eventIndex].RecordEvent();
             int scoreEarned = Convert.ToInt32(_goals[eventIndex].GetPoints());
+
+            // Check for bonuses
             int bonus = _goals[eventIndex].GetBonus();
-            Console.WriteLine(bonus);
+            scoreEarned += bonus;
 
             _score += scoreEarned;
 

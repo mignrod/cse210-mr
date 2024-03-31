@@ -5,8 +5,6 @@ public abstract class Goal
     private string _shortName;
     private string _description;
     private string _points;
-    private int _bonus = 0;
-
 
     public Goal(string name, string description, string points)
     {
@@ -16,10 +14,11 @@ public abstract class Goal
 
     }
 
-    public int GetBonus()
+    public virtual int GetBonus()
     {
-        return _bonus;
+        return 0;
     }
+
     public string GetName()
     {
         return _shortName;
