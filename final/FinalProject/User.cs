@@ -8,6 +8,10 @@ public class User
     private string _address;
     private string _phoneNumber;
 
+    public User()
+    {
+        
+    }
     public User(string name, string email, string password, string address, string phoneNumber)
     {
         _name = name;
