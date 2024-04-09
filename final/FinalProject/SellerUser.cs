@@ -12,6 +12,21 @@ public class SellerUser : User
 
     }
 
+    public void SellerUserManager()
+    {
+        Console.WriteLine($"Welcome {GetName()}.");
+        Console.WriteLine($@"
+Menu Options - {GetName()}.
+==================================
+1. Add Product to Inventory.
+2. Edit Inventory.
+3. Publish Product.
+4. Complete orders.
+==================================
+Select one option: ");
+
+        string option = Console.ReadLine();
+    }
     public void publish()
     {
 
