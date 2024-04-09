@@ -15,17 +15,51 @@ public class SellerUser : User
     public void SellerUserManager()
     {
         Console.WriteLine($"Welcome {GetName()}.");
-        Console.WriteLine($@"
+
+        while(true)
+        {
+            Console.Write($@"
 Menu Options - {GetName()}.
 ==================================
 1. Add Product to Inventory.
 2. Edit Inventory.
 3. Publish Product.
 4. Complete orders.
+5. Edit user information.
+6. Show user information. 
+7. Exit Program.
 ==================================
 Select one option: ");
 
-        string option = Console.ReadLine();
+            string option = Console.ReadLine();
+
+            switch(option)
+            {
+                case "1":
+                break;
+
+                case "2":
+                break;
+
+                case "3":
+                break;
+
+                case "4":
+                break;
+
+                case "5":
+                break;
+
+                case "6":
+                GetUserInfo();
+                break;
+
+                case "7":
+                Environment.Exit(0);
+                return;
+
+            }
+        }
     }
     public void publish()
     {
@@ -39,6 +73,20 @@ Select one option: ");
 
     public override void GetUserInfo()
     {
+        Console.Clear();
+        Console.Write(@$"
+===============================
+Username : {GetName()}
+Email : {GetEmail()}
+Address : {GetAddress()}
+Phone Number : {GetPhoneNumber()}
+List of Available Products :
+
+===============================
+Click ENTER to continue...
+");
+        Console.ReadKey();
+        Console.Clear();
 
     }
 

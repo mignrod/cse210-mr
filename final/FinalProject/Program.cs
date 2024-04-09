@@ -2,10 +2,10 @@ using System;
 
 class Program
 {
-    // private static Dictionary<string, User> users = new Dictionary<string, User>();
+    
     static void Main(string[] args)
     {
-        // File.WriteAllText("sers.json", "");
+        
         Console.WriteLine("Welcome to the Program!");
         Console.WriteLine("Here you could find a safe enviroment to buy or sell you products. Lets GO!");
 
@@ -89,12 +89,8 @@ Select a choice from the menu:  ");
                 break;
 
                 case "2":
-                Console.WriteLine("Complete the following: ");
-                Console.Write("User Name: ");
-                string userName = Console.ReadLine();
-                Console.Write("Password: ");
-                string userPassword = Console.ReadLine();
                 User logUser = new User();
+                logUser.LoggedUser();
                 
 
                 break;

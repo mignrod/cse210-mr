@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Text.Json;
+// using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 public class SavedUser
@@ -75,7 +76,7 @@ public class User
             PhoneNumber = GetPhoneNumber(),
             Products = ""
         };
-        string filePath = @"C:\Users\User\Desktop\Software Development BS\BYU-I\webfundamentals\cse210-mr\final\FinalProject\sers.json";
+        string filePath = @"C:\Users\User\Desktop\Software Development BS\BYU-I\webfundamentals\cse210-mr\final\FinalProject\users.json";
 
         string jsonContent = File.ReadAllText(filePath);
         var options = new JsonSerializerOptions { WriteIndented = true};
@@ -86,14 +87,67 @@ public class User
         stringBuilder.Insert(index, $",\n{jsonString}\n");
         string modifiedString = stringBuilder.ToString();
 
-        File.WriteAllText("sers.json", modifiedString);
+        File.WriteAllText("users.json", modifiedString);
 
     }
 
     public void LoggedUser()
     {
-        string filePath = @"C:\Users\User\Desktop\Software Development BS\BYU-I\webfundamentals\cse210-mr\final\FinalProject\sers.json";
+        string filePath = @"C:\Users\User\Desktop\Software Development BS\BYU-I\webfundamentals\cse210-mr\final\FinalProject\users.json";
         string jsonContent = File.ReadAllText(filePath);
+        var grups = JsonSerializer.Deserialize<List<Grup>>(jsonContent);
+
+        bool AutenticateUser(string inputName, string inputPassword, string inputType)
+        {
+            Console.Write("Processing...");
+            Thread.Sleep(2000);
+            Console.Clear();
+
+            var grup = grups.FirstOrDefault(g => g.Name == inputName);
+            if (grup != null)
+            {   
+                if (inputType == "S")
+                {
+                    SellerUser seller = new SellerUser(grup.Name, grup.Email, grup.Password, grup.Address, grup.PhoneNumber, grup.Products);
+                    seller.SellerUserManager();
+                } else {
+                    CustomerUser customer = new CustomerUser(grup.Name, grup.Email, grup.Password, grup.Address, grup.PhoneNumber, grup.Products);
+                    customer.CustomerUserManager();
+                }
+                return grup.Password == inputPassword;
+            }
+            return false;
+        }
+
+        // Recieve data from user
+        Console.WriteLine("Complete the following: ");
+        Console.Write("User Name: ");
+        string userName = Console.ReadLine();
+        Console.Write("Password: ");
+        string userPassword = Console.ReadLine();
+        Console.Write("Seller or Customer?: (S or C) ");
+        string userType = Console.ReadLine().ToUpper();
+
+
+        if(AutenticateUser(userName, userPassword, userType))
+        {
+            
+        }
+        else
+        {
+            Console.WriteLine("User name or password incorrect!");
+        }
         
     }
+    public class Grup
+    {
+        public string Name { get; set;}
+        public string Email { get; set;}
+        public string Password { get; set;}
+        public string Address { get; set;}
+        public string PhoneNumber { get; set;}
+        public string Products { get; set;}
+
+    }
+
 }

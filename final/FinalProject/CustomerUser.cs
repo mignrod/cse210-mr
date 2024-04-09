@@ -21,10 +21,34 @@ Menu Options - {GetName()}.
 1. Search products by name.
 2. Search products by brand.
 3. See list of available products.
+4. Edit user information.
+5. Exit Program.
 ==================================
 Select one option: ");
 
         string option = Console.ReadLine();
+        while(true)
+        {
+            switch(option)
+            {
+                case "1":
+                break;
+
+                case "2":
+                break;
+
+                case "3":
+                break;
+
+                case "4":
+                break;
+
+                case "5":
+                Environment.Exit(0);
+                break;
+
+            }
+        }
     }
 
     public void Buy()
