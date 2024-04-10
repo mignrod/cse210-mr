@@ -15,20 +15,22 @@ public class CustomerUser : User
     public void CustomerUserManager()
     {
         Console.WriteLine($"Welcome {GetName()}.");
-        Console.WriteLine($@"
+        while(true)
+        {
+            Console.Write($@"
 Menu Options - {GetName()}.
 ==================================
 1. Search products by name.
 2. Search products by brand.
 3. See list of available products.
 4. Edit user information.
-5. Exit Program.
+5. Show user information.
+6. Exit Program.
 ==================================
 Select one option: ");
 
-        string option = Console.ReadLine();
-        while(true)
-        {
+            string option = Console.ReadLine();
+            
             switch(option)
             {
                 case "1":
@@ -44,6 +46,10 @@ Select one option: ");
                 break;
 
                 case "5":
+                GetUserInfo();
+                break;
+
+                case "6":
                 Environment.Exit(0);
                 break;
 

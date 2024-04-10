@@ -139,6 +139,17 @@ public class User
         }
         
     }
+
+    public string GetJsonString()
+    {
+        string filePath = @"C:\Users\User\Desktop\Software Development BS\BYU-I\webfundamentals\cse210-mr\final\FinalProject\users.json";
+        string jsonContent = File.ReadAllText(filePath);
+        var grups = JsonSerializer.Deserialize<List<Grup>>(jsonContent);
+        var grup = grups.FirstOrDefault(g => g.Name == GetName());
+        return jsonContent;
+        // return false;
+    }
+
     public class Grup
     {
         public string Name { get; set;}

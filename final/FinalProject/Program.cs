@@ -91,8 +91,6 @@ Select a choice from the menu:  ");
                 case "2":
                 User logUser = new User();
                 logUser.LoggedUser();
-                
-
                 break;
 
                 

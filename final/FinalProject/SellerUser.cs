@@ -8,6 +8,7 @@ public class SellerUser : User
     public SellerUser(string name, string email, string password, string address, string phoneNumber, string products) : base(name, email, password, address, phoneNumber)
     {
         _products = new List<Products>();
+        products = String.Join(",", _products);
         
 
     }
@@ -36,6 +37,10 @@ Select one option: ");
             switch(option)
             {
                 case "1":
+                InventoryManager inventory = new InventoryManager();
+                inventory.AddProduct();
+                _products = new List<Products>();
+                _products = inventory.GetAddedProduct();
                 break;
 
                 case "2":
