@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 
 public class InventoryManager
 {
@@ -16,7 +18,20 @@ public class InventoryManager
 
     }
 
-    public void AddProduct()
+    public void SaveProductList(List<Products> _stock, string fileName)
+    {   
+        // Write the file to save
+        using (StreamWriter outputfile = new StreamWriter(fileName))
+        {
+            foreach (Products product in _stock)
+            {
+                outputfile.WriteLine(product.GetStringRepresentation());
+            }
+            
+        }
+    }
+
+    public void AddProduct(List<Products> _stock)
     {
         Console.Clear();
         Console.Write("What is the product name?: ");
@@ -57,10 +72,6 @@ Chose your option: ");
         
     }
 
-    public List<Products> GetAddedProduct()
-    {
-        return _stock;
-    }
     public void ReduceProduct()
     {
 

@@ -1,0 +1,1 @@
+Product: de | Brand: de | ID: 0005 | Price: 20 | Quantity: 2 | Specs: de

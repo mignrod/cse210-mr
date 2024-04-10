@@ -22,6 +22,32 @@ public abstract class Products
     {
 
     }
+    public string GetProductName()
+    {
+        return _productName;
+    }
+
+    public string GetProductBrand()
+    {
+        return _productBrand;
+    }
+
+    public string GetProductID()
+    {
+        return _productID;
+    }
+
+    public float GetPrice()
+    {
+        return _price;
+    }
+
+    public int GetQuantity()
+    {
+        return _quantity;
+    }
+
+    public abstract string GetStringRepresentation();
 
     public abstract void GetOrder();
 

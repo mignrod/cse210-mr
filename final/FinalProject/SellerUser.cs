@@ -23,43 +23,36 @@ public class SellerUser : User
 Menu Options - {GetName()}.
 ==================================
 1. Add Product to Inventory.
-2. Edit Inventory.
-3. Publish Product.
-4. Complete orders.
-5. Edit user information.
-6. Show user information. 
-7. Exit Program.
+2. Publish Product.
+3. Complete orders.
+4. Show user information. 
+5. Exit Program.
 ==================================
 Select one option: ");
 
             string option = Console.ReadLine();
-
+            InventoryManager inventory = new InventoryManager();
             switch(option)
             {
                 case "1":
-                InventoryManager inventory = new InventoryManager();
-                inventory.AddProduct();
-                _products = new List<Products>();
-                _products = inventory.GetAddedProduct();
+                inventory.AddProduct(_products);
+                // _products = new List<Products>();
+                string fileName = $"{GetName()}.txt";
+                inventory.SaveProductList(_products, fileName);
                 break;
 
                 case "2":
+                publish();
                 break;
 
                 case "3":
                 break;
 
                 case "4":
-                break;
-
-                case "5":
-                break;
-
-                case "6":
                 GetUserInfo();
                 break;
 
-                case "7":
+                case "5":
                 Environment.Exit(0);
                 return;
 
@@ -68,6 +61,41 @@ Select one option: ");
     }
     public void publish()
     {
+        Console.Clear();
+        Console.Write("Select what product you want to publish.");
+        string fileName = $"{GetName()}.txt";
+        string[] storeText = System.IO.File.ReadAllLines("store.txt");
+
+        Console.Write(@$"
+{GetName()} Products:
+====================================");
+
+        string[] lines = System.IO.File.ReadAllLines(fileName);
+        int j = 1;
+        for(int i = 0; i < lines.Count(); i++)
+        {
+        
+            Console.Write(@$"
+{j}. Product: {lines[i]}
+");
+            j++;
+        }
+        Console.Write(@"Select your option: ");
+        int selectedProduct = Convert.ToInt32(Console.ReadLine()) - 1;
+        string s = lines[selectedProduct];
+        string previous = "";
+
+        for(int k = 0; k < storeText.Count(); k++)
+        {
+            previous = string.Join("\n", storeText[k]);
+        }
+        string toSave = previous + "\n" + s;
+        using (StreamWriter outputfile = new StreamWriter("store.txt"))
+        {
+            // string[] lines = System.IO.File.ReadAllLines("store.txt");
+            // outputfile.WriteLine(lines);
+            outputfile.WriteLine(toSave);
+        }
 
     }
 

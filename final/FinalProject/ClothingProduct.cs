@@ -21,4 +21,9 @@ public class ClothingProducts : Products
     {
         
     }
+
+    public override string GetStringRepresentation()
+    {
+        return $"Product: {GetProductName()} | Brand: {GetProductBrand()} | ID: {GetProductID()} | Price: {GetPrice()} | Quantity: {GetQuantity()} | Size: {_size} | Color: {_color}";
+    }
 }

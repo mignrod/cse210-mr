@@ -19,4 +19,9 @@ public class TechProducts : Products
 
     }
 
+    public override string GetStringRepresentation()
+    {
+        return $"Product: {GetProductName()} | Brand: {GetProductBrand()} | ID: {GetProductID()} | Price: {GetPrice()} | Quantity: {GetQuantity()} | Specs: {_specifications}";
+    }
+
 }

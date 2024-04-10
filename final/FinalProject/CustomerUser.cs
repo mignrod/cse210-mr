@@ -20,12 +20,10 @@ public class CustomerUser : User
             Console.Write($@"
 Menu Options - {GetName()}.
 ==================================
-1. Search products by name.
-2. Search products by brand.
-3. See list of available products.
-4. Edit user information.
-5. Show user information.
-6. Exit Program.
+1. Search products.
+2. See list of available products.
+3. Show user information.
+4. Exit Program.
 ==================================
 Select one option: ");
 
@@ -40,16 +38,10 @@ Select one option: ");
                 break;
 
                 case "3":
-                break;
-
-                case "4":
-                break;
-
-                case "5":
                 GetUserInfo();
                 break;
 
-                case "6":
+                case "4":
                 Environment.Exit(0);
                 break;
 
