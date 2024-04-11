@@ -9,15 +9,6 @@
 }
 ,
 {
-  "Name": "da",
-  "Email": "da",
-  "Password": "da",
-  "Address": "da",
-  "PhoneNumber": "da",
-  "Products": ""
-}
-,
-{
   "Name": "mignrod",
   "Email": "mignrod@gmail.com",
   "Password": "Sofia1606..",
@@ -32,15 +23,6 @@
   "Password": "Mama1606..",
   "Address": "callejon 35 con 11 y  12",
   "PhoneNumber": "04245104532",
-  "Products": ""
-}
-,
-{
-  "Name": "miguelangelo",
-  "Email": "m@gamil",
-  "Password": "password",
-  "Address": "street ",
-  "PhoneNumber": "4245464465",
   "Products": ""
 }
 ]
