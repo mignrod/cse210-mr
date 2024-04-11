@@ -36,7 +36,6 @@ Select one option: ");
             {
                 case "1":
                 inventory.AddProduct(_products);
-                // _products = new List<Products>();
                 string fileName = $"{GetName()}.txt";
                 inventory.SaveProductList(_products, fileName);
                 break;
@@ -64,7 +63,6 @@ Select one option: ");
         Console.Clear();
         Console.Write("Select what product you want to publish.");
         string fileName = $"{GetName()}.txt";
-        string[] storeText = System.IO.File.ReadAllLines("store.txt");
 
         Console.Write(@$"
 {GetName()} Products:
@@ -76,27 +74,31 @@ Select one option: ");
         {
         
             Console.Write(@$"
-{j}. Product: {lines[i]}
-");
+{j}. Product: {lines[i]}");
             j++;
         }
         Console.Write(@"Select your option: ");
         int selectedProduct = Convert.ToInt32(Console.ReadLine()) - 1;
         string s = lines[selectedProduct];
-        string previous = "";
-
-        for(int k = 0; k < storeText.Count(); k++)
+        string[] storeText = System.IO.File.ReadAllLines("store.txt");
+        if(storeText.Length > 0)
         {
-            previous = string.Join("\n", storeText[k]);
-        }
-        string toSave = previous + "\n" + s;
-        using (StreamWriter outputfile = new StreamWriter("store.txt"))
-        {
-            // string[] lines = System.IO.File.ReadAllLines("store.txt");
-            // outputfile.WriteLine(lines);
-            outputfile.WriteLine(toSave);
-        }
+            storeText[storeText.Length - 1] += $"\n{s}";
 
+            using (StreamWriter outputfile = new StreamWriter("store.txt"))
+            {
+                foreach(string line in storeText)
+                {
+                    outputfile.WriteLine(line);
+                }
+            }
+        } else {
+
+            using (StreamWriter outputfile = new StreamWriter("store.txt"))
+            {
+                outputfile.WriteLine(s);
+            }
+        }
     }
 
     public void Edit()

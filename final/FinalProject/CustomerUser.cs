@@ -32,9 +32,11 @@ Select one option: ");
             switch(option)
             {
                 case "1":
+                Search();
                 break;
 
                 case "2":
+                SeeList();
                 break;
 
                 case "3":
@@ -48,10 +50,68 @@ Select one option: ");
             }
         }
     }
-
-    public void Buy()
+    public void Search()
     {
+        Console.Clear();
+        string[] pLines = System.IO.File.ReadAllLines("store.txt");
+        Console.Write("What are you looking for?: ");
+        string response = Console.ReadLine();
+        
+        foreach(string line in pLines)
+        {
+            string[] parts = line.Split('|');
+            if(parts[0] == $"Product : {response}")
+            {
+                Console.WriteLine(line);
+            } else {
+                Console.WriteLine($"Sorry!! There is no product *{response}* on sell.");
 
+            }
+        }
+
+    }
+
+    public void SeeList()
+    {
+        Console.Clear();
+        string[] pLines = System.IO.File.ReadAllLines("store.txt");
+        if(pLines.Length > 0)
+        {
+            Console.WriteLine("List of Available products: ");
+            Console.WriteLine(@$"
+============================================");
+            int j = 1;
+            foreach(string line in pLines)
+            {
+                Console.WriteLine($"{j}. {line}");
+                j++;
+            }
+            Console.Write("Select the product: ");
+            int pSelect = Convert.ToInt32(Console.ReadLine()) - 1;
+            string productBuyed = pLines[pSelect];
+            Buy(productBuyed);
+        } else {
+            Console.WriteLine("Sorry! There is no avaible products right now.");
+        }
+    }
+
+    public void Buy(string s)
+    {
+        Console.Clear();
+        string[] parts = s.Split("|");
+        string[] section = parts[1].Split(":");
+        Console.WriteLine($"You have Selected the current {parts[0]} {section[1]}");
+        Console.WriteLine($"{parts[3]}.");
+        Console.Write("Do you want to confirm this buy? (Y or N): ");
+        string confirmation = Console.ReadLine().ToUpper();
+        switch(confirmation)
+        {
+            case "Y":
+            break;
+
+            case "N":
+            return;
+        }
     }
 
     public void Edit()

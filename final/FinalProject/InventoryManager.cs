@@ -20,15 +20,36 @@ public class InventoryManager
 
     public void SaveProductList(List<Products> _stock, string fileName)
     {   
-        // Write the file to save
-        using (StreamWriter outputfile = new StreamWriter(fileName))
+        // Reading previous data
+        string[] data = System.IO.File.ReadAllLines(fileName);
+        string lines = "";
+        foreach(Products product in _stock)
         {
-            foreach (Products product in _stock)
-            {
-                outputfile.WriteLine(product.GetStringRepresentation());
-            }
-            
+            lines = product.GetStringRepresentation();
         }
+        // Write the file to save
+        if(data.Length > 0)
+        {
+            using (StreamWriter outputfile = new StreamWriter(fileName))
+            {
+                data[data.Length - 1] += $"\n{lines}";
+
+                foreach(string line in data)
+                {
+                    outputfile.WriteLine(line);
+                }
+            }
+        } else {
+            using (StreamWriter outputfile = new StreamWriter(fileName))
+            {
+                foreach(Products product in _stock)
+                {
+                    outputfile.WriteLine(product.GetStringRepresentation());
+                }
+            }
+        }
+            
+
     }
 
     public void AddProduct(List<Products> _stock)
